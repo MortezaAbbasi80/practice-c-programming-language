@@ -32,16 +32,16 @@ todo list> exit
 
 ## Commands
 
-add [task] → Add a new task
-list → Show all tasks
-list --done → Show only completed tasks
-list --undone → Show only undone tasks
-done [task number] → Mark task as done
-undone [task number] → Mark task as undone
-remove [task number] → Remove a task
-clear → Delete all tasks
-help → Show help menu
-exit → Exit program
+- `add [task]` → Add a new task
+- `list` → Show all tasks
+- `list --done` → Show only completed tasks
+- `list --undone` → Show only undone tasks
+- `done [task number]` → Mark task as done
+- `undone [task number] `→ Mark task as undone
+- `remove [task number]` → Remove a task
+- `clear `→ Delete all tasks
+- `help `→ Show help menu
+- `exit` → Exit program
 
 ---
 ## How To Compile
