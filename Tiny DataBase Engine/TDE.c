@@ -39,7 +39,7 @@ void hashMapRemove(struct HashMap* ,int );
 //end hashmap functions 
 
 void insertRecord(Record* ,struct HashMap*);
-
+void reconnectToIndexFile(struct HashMap *);
 
 int main()
 {
@@ -157,6 +157,37 @@ void insertRecord(Record* record,struct HashMap* mp)
 
 }
 
+void reconnectToIndexFile(struct HashMap *mp)
+{
+    FILE *file =fopen("index.tdei","rb");
+    if(!file)
+    {
+        file = fopen("index.tdei","wb");
+        fclose(file);
+    }else
+    {
+        initializeHashMap(mp);
+        int id ;
+        long offset;
+        while (1)
+        {
+            size_t readInt = fread(&id,sizeof(int),1,file);
+            size_t readLong =fread(&offset,sizeof(long),1,file);
+            
+
+            if (readInt==1&&readLong==1)
+            {
+                insertHashMap(mp,id,offset);
+            }
+            else break;
+            
+        }
+        
+
+        fclose(file);
+    }
+    
+}
 
 
 
