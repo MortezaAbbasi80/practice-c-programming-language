@@ -38,7 +38,7 @@ long hashMapGet(struct HashMap*,int );
 void hashMapRemove(struct HashMap* ,int );
 //end hashmap functions 
 
-
+void insertRecord(Record* ,struct HashMap*);
 
 
 int main()
@@ -100,6 +100,11 @@ void insertHashMap(struct HashMap* mp,int id ,long offset)
     mp->buckets[index]=newEntry;
 
     mp->count++;
+
+    FILE* file=fopen("index.tdei","ab+");
+    fwrite(&id ,sizeof(int),1,file);
+    fwrite(&offset,sizeof(long),1,file);
+    fclose(file);
 }
 
 long hashMapGet(struct HashMap* mp,int id )
@@ -141,6 +146,16 @@ void hashMapRemove(struct HashMap* mp,int id)
 
 //end hash map functions 
 
+void insertRecord(Record* record,struct HashMap* mp)
+{
+    FILE* file=fopen("data.tde","ab+");
+    long offset =ftell(file);
+    fwrite(record,sizeof(Record),1,file);
+    insertHashMap(mp,record->id,offset);
+    fclose(file);
+
+
+}
 
 
 
